@@ -7,90 +7,80 @@
     <style>
         body {
             font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
-            background-color: #111; color: #ffffff; margin: 0; padding: 20px;
+            background-color: #0c0d10; color: #f1f3f5; margin: 0; padding: 20px;
         }
-        h1, h2, h3 { color: #ff6600; margin-top: 0; }
-        h1 { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        h1, h2, h3 { color: #ff7300; margin-top: 0; }
+        h1 { text-align: center; border-bottom: 2px solid #25262b; padding-bottom: 12px; font-weight: 800; letter-spacing: 1px; }
         
-        .container { max-width: 1550px; margin: 0 auto; display: flex; flex-direction: column; gap: 25px; }
+        .container { max-width: 1300px; margin: 0 auto; display: flex; flex-direction: column; gap: 25px; }
         
-        .control-panel { background-color: #222; padding: 20px; border-radius: 10px; border: 1px solid #444; }
+        .control-panel { background-color: #141517; padding: 20px; border-radius: 12px; border: 1px solid #2c2e33; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
         .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap:10px; }
-        .station-settings { background-color: #2a2a2a; padding: 15px; border-radius: 8px; border-left: 4px solid #ff6600; margin-bottom: 15px; }
+        .station-settings { background-color: #1a1b1e; padding: 15px; border-radius: 8px; border-left: 4px solid #ff7300; margin-bottom: 15px; }
         
         .direction-vertical-container { display: flex; flex-direction: column; gap: 20px; }
-        .direction-box { background-color: #1e1e1e; padding: 20px; border-radius: 8px; border: 1px solid #333; }
-        .south-box { border-top: 4px solid #ff6600; }
-        .north-box { border-top: 4px solid #0099ff; }
+        .direction-box { background-color: #141517; padding: 20px; border-radius: 8px; border: 1px solid #2c2e33; }
+        .south-box { border-top: 4px solid #ff7300; }
+        .north-box { border-top: 4px solid #00a2ff; }
         
-        .train-card { background: #252525; padding: 15px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #444; }
+        .train-card { background: #1a1b1e; padding: 15px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #2c2e33; }
         .train-main-info { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
         
         .form-group { display: flex; flex-direction: column; gap: 2px; }
-        .form-group label { font-size: 11px; color: #aaa; font-weight: bold; }
+        .form-group label { font-size: 11px; color: #909296; font-weight: bold; }
         
-        input, select { background: #000; color: #fff; border: 1px solid #555; padding: 6px; border-radius: 4px; font-size: 13px; }
+        input, select { background: #0c0d10; color: #fff; border: 1px solid #373a40; padding: 6px; border-radius: 4px; font-size: 13px; }
+        input:focus, select:focus { border-color: #ff7300; outline: none; }
         
-        .matrix-box { margin-top: 8px; padding: 8px; background: #151515; border-radius: 4px; }
-        .matrix-title { font-size: 11px; color: #ff8833; margin-bottom: 5px; font-weight: bold; }
+        .matrix-box { margin-top: 8px; padding: 8px; background: #101113; border-radius: 4px; border: 1px solid #25262b; }
+        .matrix-title { font-size: 11px; color: #ffa94d; margin-bottom: 5px; font-weight: bold; }
         .checkbox-group { display: flex; flex-wrap: wrap; gap: 8px; }
-        .checkbox-group label { font-size: 12px; color: #ccc; display: flex; align-items: center; gap: 3px; cursor: pointer; }
+        .checkbox-group label { font-size: 12px; color: #cdced0; display: flex; align-items: center; gap: 3px; cursor: pointer; }
         
-        button { background: #ff6600; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 14px; }
-        button:hover { background: #ff8833; }
-        .action-btn { background: #d9534f; }
-        .jump-btn { background: #0066cc; }
-        .jump-btn:hover { background: #0088ff; }
+        button { background: #ff7300; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; transition: background 0.2s; }
+        button:hover { background: #ff9233; }
+        .action-btn { background: #fa5252; }
+        .action-btn:hover { background: #ff6b6b; }
         
-        /* 復刻高鐵超大看板外觀 */
-        .station-pids { position: relative; background-color: #0d0d0d; border: 6px solid #222; border-radius: 10px; padding: 20px; box-shadow: 0 12px 24px rgba(0,0,0,0.8); }
-        .station-pids:fullscreen { padding: 30px; border: none; border-radius: 0; display: flex; flex-direction: column; justify-content: space-between; }
+        .station-pids { position: relative; background-color: #050505; border: 6px solid #1a1b1e; border-radius: 12px; padding: 25px; box-shadow: 0 16px 36px rgba(0,0,0,0.9); }
         
-        /* 看板頂部橘紅橫條 */
-        .pids-top-bar { display: flex; justify-content: space-between; background: linear-gradient(90deg, #cc3300, #ff5500, #cc3300); padding: 6px 20px; font-size: 20px; font-weight: bold; color: white; border-radius: 4px 4px 0 0; }
+        /* 全螢幕樣式優化 */
+        .station-pids:fullscreen { padding: 40px; border: none; border-radius: 0; display: flex; flex-direction: column; justify-content: space-between; background-color: #000000; width: 100vw; height: 100vh; box-sizing: border-box; }
         
-        /* 左右分流 + 中間時鐘佈局 */
-        .pids-main-layout { display: flex; gap: 15px; margin-top: 15px; align-items: stretch; }
-        .pids-side-board { flex: 1; background: #000; border-radius: 4px; padding: 10px; }
-        
-        /* 中間大型數位時鐘區 */
-        .pids-center-clock { width: 140px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #050505; border: 1px solid #222; border-radius: 4px; padding: 10px; }
-        .center-clock-title { font-size: 12px; color: #888; margin-bottom: 5px; }
-        .center-clock-time { font-size: 34px; font-weight: bold; color: #fff; font-family: monospace; letter-spacing: 1px; }
-
-        .board-header-title { font-size: 22px; font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #222; padding-bottom: 5px; }
-        .t-north { color: #0099ff; }
-        .t-south { color: #00ff66; }
+        .pids-header { display: flex; justify-content: space-between; color: #ff7300; font-size: 26px; font-weight: bold; border-bottom: 2px solid #222; padding-bottom: 12px; margin-bottom: 25px; align-items: center; }
+        .pids-boards { display: flex; flex-direction: column; gap: 35px; }
+        .pids-sub-board { background: #000; border: 1px solid #111; padding: 15px; border-radius: 8px; }
+        .board-title { font-size: 28px; font-weight: bold; padding-bottom: 10px; margin-bottom: 15px; border-bottom: 1px solid #151515; }
+        .title-south { color: #ff7300; }
+        .title-north { color: #00a2ff; }
 
         .pids-table { width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed; }
-        .pids-table th { color: #555; font-size: 13px; padding-bottom: 8px; border-bottom: 1px solid #222;}
-        .pids-table td { font-size: 22px; font-weight: bold; padding: 12px 2px; white-space: nowrap; }
+        .pids-table th { color: #555555; font-size: 18px; padding-bottom: 12px; border-bottom: 2px solid #151515;}
+        .pids-table td { font-size: 34px; font-weight: bold; padding: 20px 2px; white-space: nowrap; overflow: hidden; }
         
-        /* 欄位寬度固定比例 */
-        .col-num { width: 15%; }
-        .col-dest { width: 15%; }
-        .col-time { width: 18%; }
+        .col-num { width: 12%; }
+        .col-time { width: 15%; }
+        .col-dest { width: 18%; }
         .col-plat { width: 12%; }
-        .col-cars { width: 15%; }
-        .col-matrix { width: 25%; }
+        .col-status { width: 43%; }
 
+        .c-orange { color: #ff7300; }
         .c-white { color: #ffffff; }
-        .c-dest-north { color: #00d2ff; } /* 北上水藍色 */
-        .c-dest-south { color: #00ff66; } /* 南下亮綠色 */
+        .c-green { color: #00e676; }
+        .c-status-delay { color: #ff3b30; }
         
-        /* 點亮矩陣樣式 */
-        .station-dots-line { display: flex; align-items: center; justify-content: center; gap: 4px; height: 100%; }
-        .dot { width: 6px; height: 6px; background-color: #222; border-radius: 50%; border: 1px solid #444; }
-        .dot.active-south { background-color: #00ff66; box-shadow: 0 0 8px #00ff66; border-color: #00ff66; }
-        .dot.active-north { background-color: #0099ff; box-shadow: 0 0 8px #0099ff; border-color: #0099ff; }
+        /* 內嵌單元格跑馬燈滾動特效 */
+        .scroll-wrapper { overflow: hidden; white-space: nowrap; width: 100%; box-sizing: border-box; display: block; }
+        .scroll-text { display: inline-block; padding-left: 100%; animation: cell-marquee 12s linear infinite; }
+        @keyframes cell-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
         
-        .pids-marquee-container { border-top: 1px solid #222; margin-top: 15px; padding-top: 10px; overflow: hidden; white-space: nowrap; }
-        .pids-marquee { display: inline-block; font-size: 18px; font-weight: bold; color: #ffaa00; animation: marquee 28s linear infinite; padding-left: 100%; }
+        .pids-marquee-container { border-top: 1px solid #151515; margin-top: 25px; padding-top: 15px; overflow: hidden; white-space: nowrap; }
+        .pids-marquee { display: inline-block; font-size: 24px; font-weight: bold; color: #ffa94d; animation: marquee 28s linear infinite; padding-left: 100%; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
         
-        .fullscreen-btn { background: #333; color: #fff; border: none; padding: 5px 10px; font-size: 12px; border-radius: 4px; cursor: pointer; }
-        .fullscreen-btn:hover { background: #ff6600; }
-        .log-box { background: #000; border: 1px solid #333; padding: 10px; height: 100px; overflow-y: auto; font-family: monospace; color: #4CAF50; font-size: 13px; border-radius: 5px; margin-top: 10px; }
+        .fullscreen-btn { background: #1c1c1e; color: #a9a9b3; border: 1px solid #2c2e33; padding: 8px 14px; font-size: 14px; border-radius: 6px; cursor: pointer; margin-left: 15px; transition: all 0.2s; }
+        .fullscreen-btn:hover { background: #ff7300; color: #fff; border-color: #ff7300; }
+        .log-box { background: #050505; border: 1px solid #1a1b1e; padding: 12px; height: 110px; overflow-y: auto; font-family: monospace; color: #63e6be; font-size: 13px; border-radius: 6px; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -100,12 +90,10 @@
     
     <div class="control-panel">
         <div class="panel-header">
-            <h2>⚙️ 車站核心控制面板 (THSR Matrix Mode)</h2>
+            <h2>⚙️ 車站核心控制面板 (THSR Mode)</h2>
             <div style="display:flex; gap:10px; align-items:center;">
-                <button class="jump-btn" onclick="goToTRA()">🔄 切換至台鐵廣播系統</button>
                 <input type="time" id="sysTime" value="14:00" onchange="updateSystemTime()" style="font-size:16px; padding:6px;">
                 <button class="action-btn" onclick="triggerStationBroadcastCheck()">手動發車廣播測試</button>
-                <button class="fullscreen-btn" onclick="toggleFullscreen()">🖥️ 全螢幕模式</button>
             </div>
         </div>
         
@@ -118,101 +106,107 @@
         </div>
 
         <div class="direction-vertical-container">
-            <div class="direction-box north-box">
-                <h3>⬆️ 北上 Northbound 列車排班設定</h3>
-                <div id="north_inputs_placeholder"></div>
-            </div>
             <div class="direction-box south-box">
                 <h3>⬇️ 南下 Southbound 列車排班設定</h3>
                 <div id="south_inputs_placeholder"></div>
             </div>
+            <div class="direction-box north-box">
+                <h3>⬆️ 北上 Northbound 列車排班設定</h3>
+                <div id="north_inputs_placeholder"></div>
+            </div>
         </div>
         
-        <button onclick="updateData()" style="width: 100%; margin-top: 15px; background: #ff6600; font-size:16px;">更新並儲存看板排程資料</button>
+        <button onclick="updateData()" style="width: 100%; margin-top: 15px; font-size:16px;">更新並儲存看板排程資料</button>
     </div>
 
     <div class="station-pids" id="pidsContainer">
-        <div class="pids-top-bar">
-            <div>北上 Northbound</div>
-            <div id="pids-station-title">台灣高鐵 桃園站 THSR TAOYUAN STATION</div>
-            <div>Southbound 南下</div>
+        <div class="pids-header">
+            <div id="pids-station-name">台灣高鐵 桃園站 THSR TAOYUAN STATION</div>
+            <div style="display: flex; align-items: center;">
+                <div id="pids-clock">目前時間 14:00</div>
+                <button class="fullscreen-btn" onclick="toggleFullscreen()">🖥️ 全螢幕模式</button>
+            </div>
         </div>
         
-        <div class="pids-main-layout">
-            <div class="pids-side-board">
+        <div class="pids-boards">
+            <div class="pids-sub-board">
+                <div class="board-title title-south" id="title_south_text">南下 Southbound</div>
                 <table class="pids-table">
                     <thead>
                         <tr>
                             <th class="col-num">車次 No.</th>
-                            <th class="col-dest">開往 Dest.</th>
                             <th class="col-time">時間 Time</th>
+                            <th class="col-dest">終點站 Dest.</th>
                             <th class="col-plat">月台 Plat.</th>
-                            <th class="col-cars">自由座 Cars</th>
-                            <th class="col-matrix">停靠站 Stops</th>
-                        </tr>
-                    </thead>
-                    <tbody id="pids-north-body"></tbody>
-                </table>
-            </div>
-
-            <div class="pids-center-clock">
-                <div class="center-clock-title">現在時刻</div>
-                <div class="center-clock-time" id="pids-digital-clock">14:00</div>
-            </div>
-
-            <div class="pids-side-board">
-                <table class="pids-table">
-                    <thead>
-                        <tr>
-                            <th class="col-num">車次 No.</th>
-                            <th class="col-dest">開往 Dest.</th>
-                            <th class="col-time">時間 Time</th>
-                            <th class="col-plat">月台 Plat.</th>
-                            <th class="col-cars">自由座 Cars</th>
-                            <th class="col-matrix">停靠站 Stops</th>
+                            <th class="col-status">動態資訊 Train Status & Information</th>
                         </tr>
                     </thead>
                     <tbody id="pids-south-body"></tbody>
                 </table>
             </div>
+
+            <div class="pids-sub-board">
+                <div class="board-title title-north" id="title_north_text">北上 Northbound</div>
+                <table class="pids-table">
+                    <thead>
+                        <tr>
+                            <th class="col-num">車次 No.</th>
+                            <th class="col-time">時間 Time</th>
+                            <th class="col-dest">終點站 Dest.</th>
+                            <th class="col-plat">月台 Plat.</th>
+                            <th class="col-status">動態資訊 Train Status & Information</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pids-north-body"></tbody>
+                </table>
+            </div>
         </div>
         
         <div class="pids-marquee-container">
-            <div class="pids-marquee" id="pids-marquee-text">台灣高鐵歡迎您。乘車時請勿越過月台黃色警戒線。 Welcome to Taiwan High Speed Rail.</div>
+            <div class="pids-marquee" id="pids-marquee-text"></div>
         </div>
     </div>
     
-    <div class="log-box" id="logBox">高鐵矩陣大廳看板控制核心已就緒。</div>
+    <div class="log-box" id="logBox">高鐵看板控制核心運作中。</div>
 </div>
 
 <script>
     let voices = [];
     let pidsLang = 'zh'; 
+    let displayStage = 0; // 0: 延誤, 1: 停靠站, 2: 自由座
     let broadcastHistory = new Set();
     
-    // 簡化核心站點矩陣（對應大廳看板上常駐的端點/主要站）
-    const matrixStations = ["南港", "台北", "板橋", "桃園", "新竹", "苗栗", "台中", "彰化", "雲林", "嘉義", "台南", "左營"];
-    const matrixStationsEn = ["Nangang", "Taipei", "Banqiao", "Taoyuan", "Hsinchu", "Miaoli", "Taichung", "Changhua", "Yunlin", "Chiayi", "Tainan", "Zuoying"];
+    const thsrStations = ["南港", "台北", "板橋", "桃園", "新竹", "苗栗", "台中", "彰化", "雲林", "嘉義", "台南", "左營"];
+    const thsrStationsEn = ["Nangang", "Taipei", "Banqiao", "Taoyuan", "Hsinchu", "Miaoli", "Taichung", "Changhua", "Yunlin", "Chiayi", "Tainan", "Zuoying"];
 
-    const defaultNorth = [
-        { num: "636", dest: "南港", destEn: "Nangang", time: "13:38", plat: "2", delay: "0", stops:[0,1,2,3,4,6,9,11], cars:"10-12" },
-        { num: "826", dest: "南港", destEn: "Nangang", time: "14:20", plat: "2", delay: "0", stops:[0,1,2,3,4,5,6,7,8,9,10,11], cars:"10-12" }
-    ];
     const defaultSouth = [
-        { num: "645", dest: "左營", destEn: "Zuoying", time: "14:10", plat: "1", delay: "0", stops:[3,4,6,9,10,11,12], cars:"10-12" },
-        { num: "833", dest: "左營", destEn: "Zuoying", time: "14:34", plat: "1", delay: "5", stops:[3,4,5,6,7,8,9,10,11,12], cars:"10-12" }
+        { num: "645", time: "14:08", dest: "左營", destEn: "Zuoying", plat: "1", delay: "0", stops:[3,4,6,9,10,11,12], cars:[10,11,12] },
+        { num: "833", time: "14:22", dest: "左營", destEn: "Zuoying", plat: "1", delay: "5", stops:[3,4,5,6,7,8,9,10,11,12], cars:[9,10,11,12] }
+    ];
+    const defaultNorth = [
+        { num: "122", time: "14:02", dest: "南港", destEn: "Nangang", plat: "2", delay: "0", stops:[3,2,1,0], cars:[10,11,12] }
     ];
 
     function generateFields(dir, defaultData) {
         const container = document.getElementById(`${dir}_inputs_placeholder`);
         let html = '';
         for (let i = 0; i < 2; i++) {
-            const d = defaultData[i] || { num: "", time: "", dest: "", destEn: "", plat: "", delay: "0", stops:[], cars:"10-12" };
+            const d = defaultData[i] || { num: "", time: "", dest: "", destEn: "", plat: "", delay: "0", stops:[], cars:[] };
             
-            let stopCheckboxes = matrixStations.map((st, sIdx) => {
+            let stopCheckboxes = thsrStations.map((st, sIdx) => {
                 const checked = d.stops.includes(sIdx) ? 'checked' : '';
                 return `<label><input type="checkbox" id="${dir}_stop_${i}_${sIdx}" ${checked}>${st}</label>`;
             }).join('');
+
+            let carCheckboxes = '';
+            for(let c=1; c<=12; c++) {
+                if(c === 6) {
+                    carCheckboxes += `<label style="opacity:0.4; cursor:not-allowed;"><input type="checkbox" disabled>6車</label>`;
+                } else {
+                    const checked = d.cars.includes(c) ? 'checked' : '';
+                    carCheckboxes += `<label><input type="checkbox" id="${dir}_car_${i}_${c}" ${checked}>${c}車</label>`;
+                }
+            }
 
             html += `
                 <div class="train-card">
@@ -223,12 +217,15 @@
                         <div class="form-group"><label>終點(中)</label><input type="text" id="${dir}_dest_${i}" value="${d.dest}" style="width:65px;"></div>
                         <div class="form-group"><label>終點(英)</label><input type="text" id="${dir}_dest_en_${i}" value="${d.destEn}" style="width:80px;"></div>
                         <div class="form-group"><label>月台</label><input type="text" id="${dir}_plat_${i}" value="${d.plat}" style="width:40px;"></div>
-                        <div class="form-group"><label>自由座車廂</label><input type="text" id="${dir}_cars_${i}" value="${d.cars}" style="width:65px;"></div>
-                        <div class="form-group"><label>延遲(分)</label><input type="number" id="${dir}_delay_${i}" value="${d.delay}" style="width:55px;"></div>
+                        <div class="form-group"><label>延遲(分鐘)</label><input type="number" id="${dir}_delay_${i}" value="${d.delay}" style="width:55px;"></div>
                     </div>
                     <div class="matrix-box">
-                        <div class="matrix-title">⊙ 點亮停靠站 (勾選的站點將在看板上發光)</div>
+                        <div class="matrix-title">⊙ 勾選此車次停靠站 (僅看板輪播顯示，不進入語音廣播)</div>
                         <div class="checkbox-group">${stopCheckboxes}</div>
+                    </div>
+                    <div class="matrix-box">
+                        <div class="matrix-title">⊙ 勾選自由座車廂 (第6車固定鎖定，不進入語音廣播)</div>
+                        <div class="checkbox-group">${carCheckboxes}</div>
                     </div>
                 </div>
             `;
@@ -260,17 +257,21 @@
             const delay = parseInt(document.getElementById(`${dir}_delay_${i}`).value) || 0;
             
             let stops = [];
-            matrixStations.forEach((_, sIdx) => {
+            thsrStations.forEach((_, sIdx) => {
                 if(document.getElementById(`${dir}_stop_${i}_${sIdx}`).checked) stops.push(sIdx);
             });
+
+            let cars = [];
+            for(let c=1; c<=12; c++) {
+                if(c!==6 && document.getElementById(`${dir}_car_${i}_${c}`).checked) cars.push(c);
+            }
 
             list.push({
                 num, time, delay, actualMin: parseTimeToMin(time) + delay,
                 dest: document.getElementById(`${dir}_dest_${i}`).value,
                 destEn: document.getElementById(`${dir}_dest_en_${i}`).value,
                 plat: document.getElementById(`${dir}_plat_${i}`).value,
-                cars: document.getElementById(`${dir}_cars_${i}`).value,
-                direction: dir === 'north' ? '北上' : '南下', stops
+                direction: dir === 'south' ? '南下' : '北上', stops, cars
             });
         }
         return list.filter(t => curMin <= t.actualMin);
@@ -279,8 +280,13 @@
     function updateData() {
         const stZh = document.getElementById('station_zh').value || "桃園";
         const stEn = document.getElementById('station_en').value || "Taoyuan";
-        document.getElementById('pids-station-title').innerText = `台灣高鐵 ${stZh}站 THSR ${stEn.toUpperCase()} STATION`;
-        renderTable('north'); renderTable('south');
+        document.getElementById('pids-station-name').innerText = `台灣高鐵 ${stZh}站 THSR ${stEn.toUpperCase()} STATION`;
+        
+        document.getElementById('title_south_text').innerText = pidsLang==='zh' ? "南下 Southbound" : "Southbound";
+        document.getElementById('title_north_text').innerText = pidsLang==='zh' ? "北上 Northbound" : "Northbound";
+        document.getElementById('pids-marquee-text').innerText = pidsLang==='zh' ? "台灣高鐵歡迎您。乘車時請勿越過月台黃色警戒線。" : "Welcome to Taiwan High Speed Rail. Please stand behind the yellow line.";
+
+        renderTable('south'); renderTable('north');
     }
 
     function renderTable(dir) {
@@ -291,31 +297,48 @@
         for (let i = 0; i < 2; i++) {
             const t = trains[i];
             if (t) {
-                let destStr = pidsLang === 'zh' ? t.dest : t.destEn;
-                let destClass = dir === 'north' ? 'c-dest-north' : 'c-dest-south';
-                let activeDotClass = dir === 'north' ? 'active-north' : 'active-south';
+                let infoText = "";
+                let cellClass = "c-green";
+                let useScroll = false; // 是否對該狀態啟用滾動跑馬燈
 
-                // 產生發光燈號矩陣
-                let dotsHtml = '<div class="station-dots-line">';
-                matrixStations.forEach((_, sIdx) => {
-                    const isActive = t.stops.includes(sIdx) ? activeDotClass : '';
-                    dotsHtml += `<div class="dot ${isActive}"></div>`;
-                });
-                dotsHtml += '</div>';
+                if (pidsLang === 'zh') {
+                    if (displayStage === 0) {
+                        infoText = t.delay > 0 ? `延遲 ${t.delay} 分` : "準點";
+                        if(t.delay > 0) cellClass = "c-status-delay";
+                    } else if (displayStage === 1) {
+                        const names = t.stops.map(idx => thsrStations[idx]);
+                        infoText = names.length > 0 ? "停靠站：" + names.join('→') : "直達車";
+                        if(names.length > 0) useScroll = true; // 停靠站啟用滾動
+                    } else {
+                        infoText = t.cars.length > 0 ? `自由座車廂：${t.cars.join(',')} 車` : "全車對號座";
+                    }
+                } else {
+                    if (displayStage === 0) {
+                        infoText = t.delay > 0 ? `Delay ${t.delay} Min` : "On Time";
+                        if(t.delay > 0) cellClass = "c-status-delay";
+                    } else if (displayStage === 1) {
+                        const names = t.stops.map(idx => thsrStationsEn[idx]);
+                        infoText = names.length > 0 ? "Stops: " + names.join('-') : "Non-stop Train";
+                        if(names.length > 0) useScroll = true; // 英文停靠站也啟用滾動
+                    } else {
+                        infoText = t.cars.length > 0 ? `Non-Reserved: Cars ${t.cars.join(',')}` : "All Reserved";
+                    }
+                }
 
-                // 如果有延誤，開車時間特別標註
-                let timeDisplay = t.delay > 0 ? `<span style="color:#ff3333;">${t.time} (+${t.delay})</span>` : `<span class="c-white">${t.time}</span>`;
+                // 根據狀態決定是否包裹跑馬燈外殼
+                const finalStatusHtml = useScroll 
+                    ? `<div class="scroll-wrapper"><span class="${cellClass} scroll-text">${infoText}</span></div>`
+                    : `<span class="${cellClass}">${infoText}</span>`;
 
                 html += `<tr>
-                    <td><span class="c-white">${t.num}</span></td>
-                    <td><span class="${destClass}">${destStr}</span></td>
-                    <td>${timeDisplay}</td>
+                    <td><span class="c-orange">${t.num}</span></td>
+                    <td><span class="c-white">${t.time}</span></td>
+                    <td><span class="c-orange">${pidsLang==='zh'?t.dest:t.destEn}</span></td>
                     <td><span class="c-white">${t.plat}</span></td>
-                    <td><span class="c-white" style="font-size:18px;">${t.cars}車</span></td>
-                    <td>${dotsHtml}</td>
+                    <td style="font-size:22px; text-align:left; padding-left:15px; overflow:hidden;">${finalStatusHtml}</td>
                 </tr>`;
             } else {
-                html += `<tr><td colspan="6" style="color:#222;">-</td></tr>`;
+                html += `<tr><td colspan="5" style="color:#151515;">-</td></tr>`;
             }
         }
         tbody.innerHTML = html;
@@ -330,9 +353,9 @@
         const brokenNum = t.num.split('').join(' ');
         
         let zh = `各位旅客您好，${tp[0]}點${tp[1]}分，開往${t.dest}，${brokenNum}次${t.direction}列車即將進站，請旅客前往第${t.plat}月台候車，謝謝。`;
-        let en = `Ladies and Gentlemen, train number ${brokenNum}, bound for ${t.destEn||t.dest}, is now arriving at platform ${t.plat}. Thank you.`;
+        let en = `Ladies and Gentlemen, train number ${brokenNum}, bound for ${t.destEn||t.dest}, is now arriving at platform ${t.plat}, and will depart at ${t.time}. Thank you.`;
 
-        logAction(`📢 播音：【${t.num}次】大廳廣播啟動`);
+        logAction(`📢 播音公式觸發：【${t.num}次】進站廣播`);
         
         let uZh = new SpeechSynthesisUtterance(zh); uZh.rate = 0.88;
         let vZh = document.getElementById('voice_zh_select').value; if(vZh && voices[vZh]) uZh.voice = voices[vZh];
@@ -356,8 +379,7 @@
     }
 
     function updateSystemTime() {
-        const tVal = document.getElementById('sysTime').value;
-        document.getElementById('pids-digital-clock').innerText = tVal;
+        document.getElementById('pids-clock').innerText = `目前時間 ${document.getElementById('sysTime').value}`;
         updateData(); checkAndBroadcast();
     }
 
@@ -372,21 +394,20 @@
         if (!document.fullscreenElement) c.requestFullscreen(); else document.exitFullscreen();
     }
 
-    function goToTRA() {
-        window.location.href = "https://11355028.github.io/tra-pids-simulator/";
-    }
-
     document.addEventListener("DOMContentLoaded", () => {
-        generateFields('north', defaultNorth); generateFields('south', defaultSouth);
+        generateFields('south', defaultSouth); generateFields('north', defaultNorth);
         updateData(); setTimeout(loadVoices, 600);
         
-        // 看板中英文每 8 秒流暢切換
+        // 三滾動：全部輪流顯示完畢後才切換語言
         setInterval(() => {
-            pidsLang = (pidsLang === 'zh') ? 'en' : 'zh';
+            displayStage++;
+            if (displayStage > 2) {
+                displayStage = 0;
+                pidsLang = (pidsLang === 'zh') ? 'en' : 'zh';
+            }
             updateData();
-        }, 8000);
+        }, 5000);
         
-        // 時間推進
         setInterval(() => {
             let [h, m] = document.getElementById('sysTime').value.split(':').map(Number);
             m++; if (m >= 60) { m = 0; h++; } if (h >= 24) h = 0;
